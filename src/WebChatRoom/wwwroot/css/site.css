@@ -1,6 +1,21 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.blue-background {
+    background-color: lightblue;
+}
+
+.scroll {
+    margin: 4px, 4px;
+    padding: 4px;
+    background-color: lightsalmon;
+    width: auto;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+} 
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
