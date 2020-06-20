@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebChatRoom.Models
 {
-    public class Room
+    public class Participant
     {
         public Guid Id { get; set; }
-        public string  Name { get; set; }
-        public List<Participant> Participants { get; set; }
+        public string Name { get; set; }
     }
 }

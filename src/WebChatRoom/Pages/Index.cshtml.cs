@@ -20,16 +20,6 @@ namespace WebChatRoom.Pages
         [BindProperty]
         public List<Room> Rooms { get; set; }
 
-        [BindProperty]
-        public InputModel Input { get; set; }
-        public class InputModel
-        {
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Room Name")]
-            public string RoomName { get; set; }
-        }
-
         public IndexModel(IMemoryCache memoryCache, ILogger<IndexModel> logger)
         {
             _memoryCache = memoryCache;
@@ -45,15 +35,31 @@ namespace WebChatRoom.Pages
             }
         }
 
-        public IActionResult OnPost()
+        public IActionResult OnPostAddRoom(string roomName)
         {
             if (ModelState.IsValid)
             {
                 // Get rooms
                 this.Rooms = _memoryCache.Get<List<Room>>(ROOMCACHEKEY);
-                this.Rooms.Add(new Room() { Name = Input.RoomName });
+                this.Rooms.Add(new Room() { Id = Guid.NewGuid(), Name = roomName, Participants = new List<Participant>() });
                 SetRoomCache(this.Rooms);
-                this.Input.RoomName = ""; //rest room name
+            }
+            return Page();
+        }
+
+        public IActionResult OnPostJoinRoom(Guid roomId, string Name)
+        {
+            if (ModelState.IsValid)
+            {
+                // Get rooms
+                this.Rooms = _memoryCache.Get<List<Room>>(ROOMCACHEKEY);
+                var theRoom = this.Rooms.FirstOrDefault(r => r.Id == roomId);
+                if (theRoom != null)
+                {
+                    theRoom.Participants.Add(new Participant() { Id = Guid.NewGuid(), Name = Name });
+                    SetRoomCache(this.Rooms);
+                    return new RedirectToPageResult("Room",new { Id = roomId });
+                }
             }
             return Page();
         }

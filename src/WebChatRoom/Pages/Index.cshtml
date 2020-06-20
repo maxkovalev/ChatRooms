@@ -5,11 +5,10 @@
     <div class="row">&nbsp;</div>
     <div class="row">
         <div class="col-12">
-            <form class="form-inline" method="post">
+            <form asp-page-handler="AddRoom" class="form-inline" method="post">
                 <div class="form-group">
                     <label>Add new room:</label>
-                    <input asp-for="Input.RoomName" class="form-control" placeholder="Room Name" />
-                    <span asp-validation-for="Input.RoomName" class="text-danger"></span>
+                    <input type="text" name="roomname" class="form-control" placeholder="Room Name" />
                     <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </form>
@@ -20,17 +19,26 @@
     <div class="row">
         @foreach (var room in Model.Rooms)
         {
-            <div class="col-2">
-                <div class="card text-center">
-                    <div class="card-header">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header text-center">
                         <h1>@room.Name</h1>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title"></h5>
-                        <p class="card-text"></p>
-                        <a href="#" class="btn btn-primary"></a>
+                        @foreach (var participant in room.Participants)
+                        {
+                            <h2>@participant.Name</h2>
+                        }
                     </div>
                     <div class="card-footer">
+                        <form asp-page-handler="JoinRoom" method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="roomid" value="@room.Id" />
+                                <label>Join Room:</label>
+                                <input type="text" name="name" class="form-control" placeholder="Name" />
+                                <button type="submit" class="btn btn-primary">Join</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
