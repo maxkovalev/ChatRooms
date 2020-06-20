@@ -1,30 +1,43 @@
 ﻿@page
+@model IndexModel
+
 <div class="container">
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-2">User</div>
-        <div class="col-4"><input type="text" id="userInput" /></div>
-    </div>
-    <div class="row">
-        <div class="col-2">Message</div>
-        <div class="col-4"><input type="text" id="messageInput" /></div>
+        <div class="col-12">
+            <form class="form-inline" method="post">
+                <div class="form-group">
+                    <label>Add new room:</label>
+                    <input asp-for="Input.RoomName" class="form-control" placeholder="Room Name" />
+                    <span asp-validation-for="Input.RoomName" class="text-danger"></span>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+
+        </div>
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-6">
-            <input type="button" id="sendButton" value="Send Message" />
-        </div>
+        @foreach (var room in Model.Rooms)
+        {
+            <div class="col-2">
+                <div class="card text-center">
+                    <div class="card-header">
+                        <h1>@room.Name</h1>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"></p>
+                        <a href="#" class="btn btn-primary"></a>
+                    </div>
+                    <div class="card-footer">
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 </div>
-<div class="row">
-    <div class="col-12">
-        <hr />
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <ul id="messagesList"></ul>
-    </div>
-</div>
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
