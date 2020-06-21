@@ -69,6 +69,10 @@
             document.getElementById("messagesList").appendChild(li);
         });
 
+        connection.on("Typing", function (user) {
+            alert(' typing...');    
+        });
+
         connection.start().then(function () {
             document.getElementById("sendButton").disabled = false;
         }).catch(function (err) {

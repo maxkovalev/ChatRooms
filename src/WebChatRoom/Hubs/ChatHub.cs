@@ -7,12 +7,18 @@ namespace SignalRChat.Hubs
     {
         public async Task SendMessage(string roomId, string user, string message)
         {
-            await Clients.Group(roomId).SendAsync("ReceiveMessage", user, message);
+            await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
 
         public async Task JoinRoom(string roomId)
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, roomId);
         }
+
+        public async Task ParticipantTyping(string roomId, string user)
+        {
+            await Clients.All.SendAsync("Typing", user);
+        }
+        
     }
 }
