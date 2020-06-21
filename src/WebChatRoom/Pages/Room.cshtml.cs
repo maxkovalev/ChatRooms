@@ -33,8 +33,10 @@ namespace WebChatRoom.Pages
         }
         public void OnGet(Guid roomId, Guid participantId)
         {
-            if (!_memoryCache.TryGetValue(ROOMCACHEKEY, out List<Room> rooms))
+            var rooms = _memoryCache.Get<List<Room>>(ROOMCACHEKEY);
+            if (rooms == null)
             {
+                this.Room = new Room() { Participants = new List<Participant>() };
                 return;
             }
             this.Room = rooms.FirstOrDefault(r => r.Id == roomId);

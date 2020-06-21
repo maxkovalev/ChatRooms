@@ -1,34 +1,54 @@
 ﻿@page
 @model RoomModel
-
-<div class="w3-card-4">
-    <header class="blue-background">
-        <h1>Room Name</h1>
-    </header>
-    <div class="scroll">
+    <div class="container">
+        <div class="row">&nbsp;</div>
         <div class="row">
-            <div class="col-6">
-                <ul id="messagesList"></ul>
+            <div class="col-8">
+                <div class="w3-card-4">
+                    <header class="blue-background">
+                        <h1>Room Name</h1>
+                    </header>
+                    <div class="scroll">
+                        <div class="row">
+                            <div class="col-6">
+                                <ul id="messagesList"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="blue-background">
+                        <div class="row">
+                            <div class="col-2">Message</div>
+                            <div class="col-4"><input type="text" id="messageInput" /></div>
+                        </div>
+                        <div class="row">&nbsp;</div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input onclick="updateScroll()" type="button" id="sendButton" value="Send Message" />
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>Participants</h1>
+                    </div>
+                    <div class="card-body">
+                        @foreach (var participant in Model.Room.Participants)
+                        {
+                            <p>@participant.Name</p>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <footer class="blue-background">
-        <div class="row">
-            <div class="col-2">Message</div>
-            <div class="col-4"><input type="text" id="messageInput" /></div>
-        </div>
-        <div class="row">&nbsp;</div>
-        <div class="row">
-            <div class="col-6">
-                <input onclick="updateScroll()" type="button" id="sendButton" value="Send Message" />
-            </div>
-        </div>
-    </footer>
-</div>
 
-<input type="hidden" name="roomid" value="@Model.Room.Id" />
-<input type="hidden" name="participantId" value="@Model.Participant.Id" />
-<input type="hidden" name="participantName" value="@Model.Participant.Name" />
 
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+
+        <input type="hidden" name="roomid" value="@Model.Room.Id" />
+        <input type="hidden" name="participantId" value="@Model.Participant.Id" />
+        <input type="hidden" name="participantName" value="@Model.Participant.Name" />
+        <script src="~/js/signalr/dist/browser/signalr.js"></script>
+        <script src="~/js/chat.js"></script>

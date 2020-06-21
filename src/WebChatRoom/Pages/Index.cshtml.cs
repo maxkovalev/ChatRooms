@@ -28,10 +28,11 @@ namespace WebChatRoom.Pages
 
         public void OnGet()
         {
-            if(!_memoryCache.TryGetValue(ROOMCACHEKEY,out List<Room> Rooms))
+            Rooms = _memoryCache.Get<List<Room>>(ROOMCACHEKEY);
+            if (Rooms == null)
             {
-                this.Rooms = new List<Room>();
-                SetRoomCache(this.Rooms);
+                Rooms = new List<Room>();
+                SetRoomCache(Rooms);
             }
         }
 
