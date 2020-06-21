@@ -18,12 +18,12 @@
                     <footer class="blue-background">
                         <div class="row">
                             <div class="col-2">Message</div>
-                            <div class="col-4"><input type="text" id="messageInput" /></div>
+                            <div class="col-4"><input onkeyup="indicateIsTyping()" type="text" id="messageInput" /></div>
                         </div>
                         <div class="row">&nbsp;</div>
                         <div class="row">
                             <div class="col-6">
-                                <input onclick="updateScroll()" type="button" id="sendButton" value="Send Message" />
+                                <input type="button" id="sendButton" value="Send Message" />
                             </div>
                         </div>
                     </footer>
@@ -85,8 +85,22 @@
             event.preventDefault();
         });
 
-        function updateScroll() {
-            var element = document.getElementsByClassName("scroll");
-            element.scrollTop = element.scrollHeight;
+        var timerIsRunning = false;
+
+        function setTimerRunningFalse() {
+            timerIsRunning = false;
+        }
+
+        function indicateIsTyping() {
+            if (timerIsRunning) {
+                return;
+            }
+            timerIsRunning = true;
+            var roomID = document.getElementById("roomid").value;
+            var user = document.getElementById("participantName").value;
+            connection.invoke("ParticipantTyping", roomID, user).catch(function (err) {
+                return console.error(err.toString());
+            });
+            setTimeout(setTimerRunningFalse, 2000);
         }
     </script>
