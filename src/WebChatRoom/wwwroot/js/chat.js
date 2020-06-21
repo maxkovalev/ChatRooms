@@ -21,8 +21,9 @@ connection.start().then(function () {
 
 document.getElementById("sendButton").addEventListener("click", function (event) {
     var user = "Alex";
+    var roomID = "ss";
     var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(function (err) {
+    connection.invoke("SendMessage", roomID, user, message).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();
