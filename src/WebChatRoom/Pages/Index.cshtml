@@ -36,7 +36,7 @@
                                 <input type="hidden" name="roomid" value="@room.Id" />
                                 <label>Join Room:</label>
                                 <input type="text" name="name" class="form-control" placeholder="Name" />
-                                <button type="submit" class="btn btn-primary">Join</button>
+                                <button type="submit" class="btn btn-primary" onclick="JoinGroup('@room.Id');">Join</button>
                             </div>
                         </form>
                     </div>
@@ -46,6 +46,18 @@
     </div>
 </div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+    "use strict";
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+
+    connection.start();
+
+    function JoinGroup(roomId) {
+        connection.invoke("JoinRoom", roomId).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
+
+</script>
