@@ -1,7 +1,9 @@
 ﻿@page
+@model RoomModel
+
 <div class="w3-card-4">
     <header class="blue-background">
-      <h1>Room Name</h1>
+        <h1>Room Name</h1>
     </header>
     <div class="scroll">
         <div class="row">
@@ -23,6 +25,10 @@
         </div>
     </footer>
 </div>
+
+<input type="hidden" name="roomid" value="@Model.Room.Id" />
+<input type="hidden" name="participantId" value="@Model.Participant.Id" />
+<input type="hidden" name="participantName" value="@Model.Participant.Name" />
 
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>

@@ -56,9 +56,10 @@ namespace WebChatRoom.Pages
                 var theRoom = this.Rooms.FirstOrDefault(r => r.Id == roomId);
                 if (theRoom != null)
                 {
-                    theRoom.Participants.Add(new Participant() { Id = Guid.NewGuid(), Name = Name });
+                    var participantId = Guid.NewGuid();
+                    theRoom.Participants.Add(new Participant() { Id = participantId, Name = Name });
                     SetRoomCache(this.Rooms);
-                    return new RedirectToPageResult("Room",new { Id = roomId });
+                    return new RedirectToPageResult("Room",new { roomId = roomId, participantId = participantId });
                 }
             }
             return Page();
