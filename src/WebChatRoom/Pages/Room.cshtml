@@ -6,7 +6,7 @@
             <div class="col-8">
                 <div class="w3-card-4">
                     <header class="blue-background">
-                        <h1>Room Name</h1>
+                        <h1>Room: @Model.Room.Name</h1>
                     </header>
                     <div class="scroll">
                         <div class="row">
@@ -75,6 +75,8 @@
 
         connection.start().then(function () {
             document.getElementById("sendButton").disabled = false;
+            var roomID = document.getElementById("roomid").value;
+            connection.invoke("JoinRoom", roomID); // join the room chat
         }).catch(function (err) {
             return console.error(err.toString());
         });

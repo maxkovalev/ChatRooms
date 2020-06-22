@@ -60,7 +60,7 @@ namespace WebChatRoom.Pages
                     var participantId = Guid.NewGuid();
                     theRoom.Participants.Add(new Participant() { Id = participantId, Name = Name });
                     SetRoomCache(this.Rooms);
-                    return new RedirectToPageResult("Room",new { roomId = roomId, participantId = participantId });
+                    return new RedirectToPageResult("Room",new { roomId, participantId });
                 }
             }
             return Page();
