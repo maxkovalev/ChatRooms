@@ -42,6 +42,8 @@ namespace WebChatRoom.Pages
             {
                 // Get rooms
                 this.Rooms = _memoryCache.Get<List<Room>>(ROOMCACHEKEY);
+                if (this.Rooms.Count > 9) return Page(); // limit to 10 rooms only
+
                 this.Rooms.Add(new Room() { Id = Guid.NewGuid(), Name = roomName, Participants = new List<Participant>() });
                 SetRoomCache(this.Rooms);
             }
@@ -57,6 +59,7 @@ namespace WebChatRoom.Pages
                 var theRoom = this.Rooms.FirstOrDefault(r => r.Id == roomId);
                 if (theRoom != null)
                 {
+                    if (theRoom.Participants.Count > 9) return Page(); // limit to 10 partisipants
                     var participantId = Guid.NewGuid();
                     theRoom.Participants.Add(new Participant() { Id = participantId, Name = Name });
                     SetRoomCache(this.Rooms);
