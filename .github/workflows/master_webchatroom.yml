@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/src/WebChatRoom/checkout@master
+    - uses: actions/checkout@master/src/WebChatRoom
 
     - name: Set up .NET Core
       uses: actions/setup-dotnet@v1
