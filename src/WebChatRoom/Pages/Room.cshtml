@@ -16,6 +16,12 @@
                         </div>
                     </div>
                     <footer class="blue-background">
+                        <div class="row" id="typingIndicator" style="display: none">
+                            <div class="col">
+                                <p id="indicatorText" style="display: inline"></p>
+                                <img src="../media/transgif.gif" alt="typing indicator" width="40" height="20" style="display: inline">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-2">Message</div>
                             <div class="col-4"><input onkeyup="indicateIsTyping()" type="text" id="messageInput" /></div>
@@ -69,8 +75,14 @@
             document.getElementById("messagesList").appendChild(li);
         });
 
+        function setIndicatorOff() {
+            document.getElementById("typingIndicator").style.display = "none";
+        }
+
         connection.on("Typing", function (user) {
-            alert(' typing...');    
+            document.getElementById("indicatorText").innerHTML = user + " is typing";
+            document.getElementById("typingIndicator").style.display = "block";
+            setTimeout(setIndicatorOff, 2000);
         });
 
         connection.start().then(function () {
