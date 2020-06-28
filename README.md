@@ -19,7 +19,7 @@ This project is an proof of concept web chat room designed with Microsoft .net c
 * Login into rooms with custom username
 * See your and other room participants messages
 * See typing indicator appear when 
-To see a typing indicator please open two browsers and enter in the same room.
+* To see a typing indicator please open two browsers and enter in the same room.
 
 ## License
 This project is open-source under apache. You can take it and use it any way that you wish.
