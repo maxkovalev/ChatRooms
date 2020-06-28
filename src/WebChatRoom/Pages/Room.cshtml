@@ -4,18 +4,18 @@
         <div class="row">&nbsp;</div>
         <div class="row">
             <div class="col-8">
-                <div class="w3-card-4">
-                    <header class="blue-background">
+                <div class="card">
+                    <div class="card-header text-center">
                         <h1>Room: @Model.Room.Name</h1>
-                    </header>
-                    <div class="scroll">
+                    </div>
+                    <div class="scroll card-body">
                         <div class="row">
                             <div class="col-6">
                                 <ul id="messagesList"></ul>
                             </div>
                         </div>
                     </div>
-                    <footer class="blue-background">
+                    <div class="card-footer">
                         <div class="row" id="typingIndicator" style="display: none">
                             <div class="col">
                                 <p id="indicatorText" style="display: inline"></p>
@@ -24,15 +24,12 @@
                         </div>
                         <div class="row">
                             <div class="col-2">Message</div>
-                            <div class="col-4"><input onkeyup="indicateIsTyping()" type="text" id="messageInput" /></div>
-                        </div>
-                        <div class="row">&nbsp;</div>
-                        <div class="row">
-                            <div class="col-6">
+                            <div class="col-6"><input onkeyup="indicateIsTyping()" class="col-12" type="text" id="messageInput" /></div>
+                            <div class="col-4">
                                 <input type="button" id="sendButton" value="Send Message" />
                             </div>
                         </div>
-                    </footer>
+                    </div>
                 </div>
             </div>
             <div class="col-4">
