@@ -11,14 +11,14 @@
 This project is an proof of concept web chat room designed with Microsoft .net core SignalR. Features includes: massages sent with-in rooms only and message typing indicator.
 	
 ## Technologies
-*.Net Core 3.1
-*Signal R
+* .Net Core 3.1
+* Signal R
 
 ## Usage
-*Create new room rooms
-*Login into rooms with custom username
-*See your and other room participants messages
-*See typing indicator appear when 
+* Create new room rooms
+* Login into rooms with custom username
+* See your and other room participants messages
+* See typing indicator appear when 
 To see a typing indicator please open two browsers and enter in the same room.
 
 ## License
